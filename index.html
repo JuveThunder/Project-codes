@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IOT</title>
+       <link rel="stylesheet" href="style.css"> 
+    </head>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyD_ViPZXR4IjZwOpoaCEKNIUCbVIDbrVmM",
+  authDomain: "white-thunder.firebaseapp.com",
+  databaseURL: "https://white-thunder-default-rtdb.firebaseio.com",
+  projectId: "white-thunder",
+  storageBucket: "white-thunder.appspot.com",
+  messagingSenderId: "289638738333",
+  appId: "1:289638738333:web:7765408e978e49966fe774",
+  measurementId: "G-Q7FW2037V9"   };
+      firebase.initializeApp(firebaseConfig);
+  
+  firebase.database().ref("SALA/estado").on("value", snapshot => {
+    document.querySelector("#estado-led").textContent = snapshot.val();
+  });
+  
+  
+      function ledOn() {
+        firebase.database().ref("SALA").set({
+          estado: "LIGADA"
+        });
+      }
+  
+      function ledOff() {
+        firebase.database().ref("SALA").set({
+          estado: "DESLIGADA"
+        });
+      }
+    </script>
+    <script src="app.js" defer></script>
+    <body>
+        <section id="page">
+            <div class="section__text">
+                <p class="section__text__p1"> White Thunder</p>
+                <h1 class="title">TME Education</h1>
+                <p class="section__text__p2">Internet of Things</p>
+                <div class="btn-container">
+                    <button class="btn btn-color-2" onclick="ledOn()">Ligar</button>
+                    <button class="btn btn-color-1" onclick="ledOff()">Desligar</button>
+                </div>
+            </div>
+        </section>
+       
+    </body>
+      </html>
